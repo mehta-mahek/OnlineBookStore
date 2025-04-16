@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper@7/swiper-bundle.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <title>Bookji Chatbot</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600&display=swap");
+
+      :root {
+        --green: #6b4226;
+        --dark-color: #4e2a1e;
+        --black: #3b2f2f;
+        --light-color: #9c6b4f;
+        --border: 0.1rem solid rgba(80, 60, 40, 0.3);
+        --border-hover: 0.1rem solid var(--black);
+        --box-shadow: 0 0.5rem 1rem rgba(80, 60, 40, 0.2);
+        background-color: #f5e1c8;
+      }
+
+      * {
+        font-family: "Poppins", sans-serif;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        outline: none;
+        border: none;
+        text-decoration: none;
+        text-transform: capitalize;
+        transition: all 0.2s linear;
+        transition: width none;
+      }
+
+      html {
+        font-size: 62.5%;
+        overflow-x: hidden;
+        scroll-padding-top: 5rem;
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background: var(--background-color);
+        display: flex;
+        flex-direction: column; /* Stack header and chat container */
+        min-height: 100vh; /* Ensure full viewport height */
+      }
+
+      /* HEADER */
+      .header {
+        background: var(--green);
+        padding: 1.5rem 9%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: #f5e1c8;
+      }
+
+      .header .logo {
+        font-size: 2.5rem;
+        font-weight: bolder;
+        color: #f5e1c8;
+      }
+
+      .header .logo i {
+        color: #f5e1c8;
+      }
+
+      .header .icons div,
+      .header .icons a {
+        font-size: 2.5rem;
+        margin-left: 1.5rem;
+        color: #f5e1c8;
+        cursor: pointer;
+      }
+
+      .header .icons div:hover,
+      .header .icons a:hover {
+        color: #f5e1c8;
+      }
+
+      /* CHAT HISTORY SIDEBAR */
+      .history-sidebar {
+        width: 300px;
+        background: #f0e6d2;
+        border-right: 1px solid #ccc;
+        padding: 20px;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .history-sidebar h2 {
+        font-size: 2rem;
+        color: var(--dark-color);
+        margin-bottom: 15px;
+        text-align: center;
+      }
+
+      .history-sidebar ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .history-sidebar ul li {
+        margin-bottom: 10px;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 10px;
+        cursor: pointer;
+      }
+
+      .history-sidebar ul li:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+      }
+
+      .history-sidebar ul li a {
+        display: block;
+        padding: 10px 15px;
+        background: #e6d9c2;
+        border-radius: 5px;
+        color: var(--black);
+        text-decoration: none;
+        font-size: 1.6rem;
+      }
+
+      .history-sidebar ul li a:hover {
+        background: var(--light-color);
+        color: white;
+      }
+
+      .main-content {
+        display: flex;
+        flex-grow: 1;
+      }
+
+      /* CHAT CONTAINER */
+      .chat-container {
+        flex-grow: 1; /* Allow container to grow and fill remaining space */
+        display: flex;
+        flex-direction: column;
+        background: #fff8dc;
+        border-radius: 0; /* Remove border radius for fullscreen */
+      }
+
+      /* CHAT HEADER */
+      .chat-header {
+        background: var(--green);
+        padding: 15px;
+        color: white;
+        text-align: center; /* Center the header text */
+        font-size: 1.8rem;
+      }
+
+      /* CHAT BOX */
+      .chat-box {
+        flex-grow: 1; /* Allow chat box to take up remaining space */
+        overflow-y: auto;
+        padding: 15px;
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* MESSAGES */
+      .bot-message,
+      .user-message {
+        padding: 10px;
+        margin: 5px;
+        border-radius: 10px;
+        max-width: 80%;
+        font-size: 1.6rem;
+        word-break: break-word;
+      }
+
+      .bot-message {
+        background: var(--green);
+        color: white;
+        align-self: flex-start;
+      }
+
+      .user-message {
+        background: #d2b48c;
+        color: black;
+        align-self: flex-end;
+      }
+
+      .message-timestamp {
+        font-size: 0.8rem;
+        color: #777;
+        margin-top: 2px;
+      }
+
+      /* CHAT INPUT */
+      .chat-input {
+        display: flex;
+        padding: 10px;
+        background: var(--green);
+        border-top: 1px solid #ccc;
+      }
+
+      .chat-input input {
+        flex: 1;
+        padding: 12px;
+        border: none;
+        outline: none;
+        background: #f5deb3;
+        border-radius: 20px;
+        font-size: 1.6rem;
+      }
+
+      .chat-input button {
+        background: var(--dark-color);
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        margin-left: 10px;
+        cursor: pointer;
+        border-radius: 50%;
+        font-size: 1.8rem;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <a href="#" class="logo"> <i class="fas fa-book"></i> Bookji Chatbot</a>
+      <div class="icons">
+        <a href="home.html">home</a>
+      </div>
+    </header>
+
+    <div class="main-content">
+      <div class="history-sidebar">
+        <h2>Chat History</h2>
+        <ul id="chatHistoryList"></ul>
+      </div>
+
+      <div class="chat-container">
+        <div class="chat-box" id="chatBox">
+          <div class="bot-message">Hello! How can I assist you today?</div>
+        </div>
+        <div class="chat-input">
+          <input id="userInput" type="text" placeholder="Type a message..." />
+          <button onclick="sendMessage()">➤</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      let sessionId = null;
+      const userId = 1; // Replace with actual user ID from login or hardcoded for now
+      const userInput = document.getElementById("userInput");
+      const chatBox = document.getElementById("chatBox");
+      const chatHistoryList = document.getElementById("chatHistoryList");
+
+      // Function to format timestamp
+      function formatTimestamp(timestamp) {
+        const date = new Date(timestamp);
+        const hours = date.getHours().toString().padStart(2, "0");
+        const minutes = date.getMinutes().toString().padStart(2, "0");
+        return `${hours}:${minutes}`;
+      }
+
+      // Function to load chat history
+      async function loadChatHistory() {
+        try {
+          const response = await fetch(
+            `http://localhost:5000/api/chat/${userId}`
+          );
+          const data = await response.json();
+
+          if (response.ok) {
+            chatHistoryList.innerHTML = ""; // Clear previous history
+            data.forEach((session) => {
+              const listItem = document.createElement("li");
+              const link = document.createElement("a");
+              link.href = `#`; // Prevent default link behavior
+              link.textContent = `${new Date(
+                session.startTime
+              ).toLocaleDateString()} - ${session.summary}`;
+              link.addEventListener("click", () =>
+                loadChatSession(session.sessionId)
+              );
+              listItem.appendChild(link);
+              chatHistoryList.appendChild(listItem);
+            });
+          } else {
+            console.error("Failed to load chat history:", data.error);
+            chatHistoryList.innerHTML = `<li style="color: red;">Error loading history</li>`;
+          }
+        } catch (error) {
+          console.error("Error loading chat history:", error);
+          chatHistoryList.innerHTML = `<li style="color: red;">Network error</li>`;
+        }
+      }
+
+      // Function to load a specific chat session
+      async function loadChatSession(selectedSessionId) {
+        sessionId = selectedSessionId; // Set the current sessionId
+        chatBox.innerHTML = ""; // Clear current chat messages
+        try {
+          const response = await fetch(
+            `http://localhost:5000/api/chat/${userId}/${selectedSessionId}`
+          );
+          const data = await response.json();
+
+          if (response.ok) {
+            data.forEach((message) => {
+              const messageDiv = document.createElement("div");
+              messageDiv.className =
+                message.sender === "You" ? "user-message" : "bot-message";
+              messageDiv.textContent = message.text;
+              const timestampSpan = document.createElement("span");
+              timestampSpan.className = "message-timestamp";
+              timestampSpan.textContent = formatTimestamp(message.timestamp);
+              messageDiv.appendChild(timestampSpan);
+              chatBox.appendChild(messageDiv);
+            });
+            chatBox.scrollTop = chatBox.scrollHeight; // Scroll to the latest messages
+          } else {
+            console.error("Failed to load chat session:", data.error);
+            chatBox.innerHTML = `<div class="bot-message error">Error loading chat session.</div>`;
+          }
+        } catch (error) {
+          console.error("Error loading chat session:", error);
+          chatBox.innerHTML = `<div class="bot-message error">Network error loading chat.</div>`;
+        }
+      }
+
+      async function sendMessage() {
+        const userMessage = userInput.value.trim();
+
+        if (userMessage === "") return;
+
+        // Add user message
+        const userDiv = document.createElement("div");
+        userDiv.className = "user-message";
+        userDiv.textContent = userMessage;
+        const userTimestamp = document.createElement("span");
+        userTimestamp.className = "message-timestamp";
+        userTimestamp.textContent = formatTimestamp(new Date());
+        userDiv.appendChild(userTimestamp);
+        chatBox.appendChild(userDiv);
+
+        // Add temporary bot message
+        const botDiv = document.createElement("div");
+        botDiv.className = "bot-message";
+        botDiv.textContent = "Thinking...";
+        chatBox.appendChild(botDiv);
+
+        // Scroll to bottom
+        chatBox.scrollTop = chatBox.scrollHeight;
+
+        try {
+          const response = await fetch("http://localhost:5000/api/chat", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              userId,
+              userMessage,
+              sessionId, // Will use existing or null for new
+            }),
+          });
+
+          const data = await response.json();
+
+          // Remove "Thinking..." message
+          chatBox.removeChild(botDiv);
+
+          // Add actual bot response
+          const actualBotDiv = document.createElement("div");
+          actualBotDiv.className = "bot-message";
+          if (data.error) {
+            actualBotDiv.textContent = `Error: ${data.error}`;
+          } else {
+            actualBotDiv.textContent = data.aiResponse;
+            const botTimestamp = document.createElement("span");
+            botTimestamp.className = "message-timestamp";
+            botTimestamp.textContent = formatTimestamp(new Date());
+            actualBotDiv.appendChild(botTimestamp);
+            sessionId = data.sessionId; // Save sessionId for next message
+          }
+          chatBox.appendChild(actualBotDiv);
+
+          // Scroll to bottom again after bot message
+          chatBox.scrollTop = chatBox.scrollHeight;
+
+          // Reload chat history to update the summary of the current session
+          loadChatHistory();
+        } catch (error) {
+          // Remove "Thinking..." message on error
+          chatBox.removeChild(botDiv);
+          const errorBotDiv = document.createElement("div");
+          errorBotDiv.className = "bot-message error";
+          errorBotDiv.textContent = "Error contacting server.";
+          chatBox.appendChild(errorBotDiv);
+          console.error("Frontend error:", error);
+        }
+
+        userInput.value = "";
+      }
+
+      function handleKeyPress(event) {
+        if (event.key === "Enter") {
+          sendMessage();
+        }
+      }
+
+      // Load chat history on page load
+      window.onload = loadChatHistory;
+
+      // Add event listener for Enter key press on the input field
+      userInput.addEventListener("keypress", handleKeyPress);
+    </script>
+  </body>
+</html>

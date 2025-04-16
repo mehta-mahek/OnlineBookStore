@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shopping Cart</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        
+        :root {
+            --green: #6b4226;
+            --dark-color: #4e2a1e;
+            --black: #3b2f2f;
+            --border: 0.1rem solid rgba(80, 60, 40, 0.3);
+            background-color: #f5e1c8;
+        }
+        * {
+            font-family: "Poppins", sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            padding: 2rem;
+        }
+        .cart-item {
+            border: var(--border);
+            padding: 1rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .btn {
+            padding: 0.9rem 3rem;
+            border-radius: 0.5rem;
+            color: #fff;
+            background: var(--green);
+            font-size: 1.7rem;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background: var(--dark-color);
+        }
+        h1 {
+            text-align: center;
+            margin: 2rem 0;
+            color: var(--black);
+        }
+        #cart-total {
+            font-size: 2rem;
+            color: var(--black);
+        }
+        .header .header-1 {
+        background: var(--green);
+        padding: 1.5rem 9%;
+        display: flex;
+        align-items: center;
+        color: #f5e1c8;
+        justify-content: space-between;
+      }
+
+      .header .header-1 .logo {
+        font-size: 2.5rem;
+        font-weight: bolder;
+        color: #f5e1c8;
+      }
+
+      .header .header-1 .logo i {
+        color: #f5e1c8;
+      }
+
+      .header .header-1 .search-form {
+        width: 50rem;
+        height: 5rem;
+        border: var(--border);
+        overflow: hidden;
+        background: #f5e1c8;
+        display: flex;
+        align-items: center;
+        border-radius: 0.5rem;
+      }
+
+      .header .header-1 .search-form input {
+        font-size: 1.6rem;
+        padding: 0 1.2rem;
+        height: 100%;
+        width: 100%;
+        text-transform: none;
+        color: var(--black);
+      }
+
+      .header .header-1 .search-form label {
+        font-size: 2.5rem;
+        padding-right: 1.5rem;
+        color: var(--black);
+        cursor: pointer;
+      }
+
+      .header .header-1 .search-form label:hover {
+        color: var(--green);
+      }
+
+      .header .header-1 .icons div,
+      .header .header-1 .icons a {
+        font-size: 2.5rem;
+        margin-left: 1.5rem;
+        color: #f5e1c8;
+        cursor: pointer;
+      }
+
+      .header .header-1 .icons div:hover,
+      .header .header-1 .icons a:hover {
+        color: #f5e1c8;
+      }
+
+      #search-btn {
+        display: none;
+      }
+
+      .header .header-2 {
+        background: var(--dark-color);
+        color: #f5e1c8;
+      }
+
+      .header .header-2 .navbar {
+        text-align: center;
+      }
+
+      .header .header-2 .navbar a {
+        color: #f5e1c8;
+        display: inline-block;
+        padding: 1.2rem;
+        font-size: 1.7rem;
+      }
+
+      .header .header-2 .navbar a:hover {
+        background: var(--black);
+      }
+
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-1">
+            <a href="#" class="logo"> <i class="fas fa-book"></i> Bookji Shopping Cart</a>
+            <div class="icons">
+                <div id="search-btn" class="fas fa-search"></div>
+                <a href="wishlist.html" class="fas fa-heart"></a>
+                <a href="cart.html" class="fas fa-shopping-cart"></a>
+                <a href="gg.html" class="fas fa-user"></a>
+            </div>
+        </div>
+        <div class="header-2">
+            <nav class="navbar">
+                <a href="home.html">home</a>
+                <a href="featured.html">featured</a>
+                <a href="arrival.html">arrivals</a>
+                <a href="review.html">reviews</a>
+                <a href="blog.html">blogs</a>
+                <a href="chat.html">Chat</a>
+            </nav>
+        </div>
+    </header>
+    <div id="cart-items"></div>
+    <p>Total: Rs. <span id="cart-total">0</span></p>
+    <button id="checkout-btn" class="btn">Proceed to Checkout</button>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+          const cartItemsContainer = document.getElementById("cart-items");
+          const cartTotalElement = document.getElementById("cart-total");
+          const checkoutBtn = document.getElementById("checkout-btn");
+
+          let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  
+          function displayCart() {
+              cartItemsContainer.innerHTML = "";
+              let total = 0;
+  
+              cart.forEach((item, index) => {
+                  const itemDiv = document.createElement("div");
+                  itemDiv.className = "cart-item";
+                  itemDiv.innerHTML = `
+                      <h3>${item.name}</h3>
+                      <p>Price: ${item.price}</p>
+                      <input type="number" class="item-quantity" value="${item.quantity}" min="1" data-index="${index}">
+                      <p>Subtotal: <span class="item-subtotal">${item.price * item.quantity}</span></p>
+                      <button class="btn remove-item" data-index="${index}">Remove</button>
+                  `;
+                  cartItemsContainer.appendChild(itemDiv);
+                  total += item.price * item.quantity;
+              });
+  
+              cartTotalElement.textContent = total;
+              localStorage.setItem("cartTotal", total);
+              attachEventListeners();
+          }
+  
+          function attachEventListeners() {
+              document.querySelectorAll(".item-quantity").forEach((input) => {
+                  input.addEventListener("change", (event) => {
+                      let index = event.target.dataset.index;
+                      cart[index].quantity = Math.max(1, parseInt(event.target.value));
+                      updateCart();
+                  });
+              });
+  
+              document.querySelectorAll(".remove-item").forEach((button) => {
+                  button.addEventListener("click", () => {
+                      let index = button.dataset.index;
+                      cart.splice(index, 1);
+                      updateCart();
+                  });
+              });
+              checkoutBtn.addEventListener("click", () => {
+                  window.location.href = "checkout.html";
+              });
+          }
+  
+          function updateCart() {
+              localStorage.setItem("cart", JSON.stringify(cart));
+              displayCart();
+          }
+  
+          displayCart();
+      });
+  </script>
+    <script>
+      const cartContainerDiv = document.getElementById("cart-container");
+      const cartEmptyParagraph = document.getElementById("cart-empty");
+      const cartItemsDiv = document.getElementById("cart-items");
+      const cartTotalParagraph = document.getElementById("cart-total");
+      const cartNotificationDiv = document.getElementById("cart-notification");
+      const CURRENT_USER_ID = 1; // Replace with actual user authentication
+
+      async function fetchCart() {
+        try {
+          const response = await fetch(
+            `http://localhost:5000/api/cart/${CURRENT_USER_ID}`
+          );
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          const { items, total } = await response.json();
+          displayCart(items, total); // Pass the total received from the backend
+        } catch (error) {
+          console.error("Error fetching cart:", error);
+          cartContainerDiv.innerHTML = "<p>Failed to load cart.</p>";
+        }
+      }
+
+      function displayCart(items, total) {
+        cartItemsDiv.innerHTML = "";
+        if (items.length === 0) {
+          cartEmptyParagraph.style.display = "block";
+        } else {
+          cartEmptyParagraph.style.display = "none";
+          items.forEach((item) => {
+            const cartItemDiv = document.createElement("div");
+            cartItemDiv.classList.add("cart-item");
+            cartItemDiv.innerHTML = `
+                    <div class="details">
+                        <h4>${item.name}</h4>
+                        <p>Price: Rs. ${item.price.toFixed(2)}</p>
+                        <div class="quantity-controls">
+                            <button class="decrease-quantity" data-book-id="${
+                              item.id
+                            }">-</button>
+                            <span>${item.quantity}</span>
+                            <button class="increase-quantity" data-book-id="${
+                              item.id
+                            }">+</button>
+                        </div>
+                        <p>Subtotal: Rs. ${item.subtotal.toFixed(2)}</p>
+                    </div>
+                    <button class="btn remove-item" data-book-id="${
+                      item.id
+                    }">Remove</button>
+                `;
+            cartItemsDiv.appendChild(cartItemDiv);
+          });
+        }
+        cartTotalParagraph.textContent = `Total: Rs. ${total.toFixed(2)}`;
+
+        // Store the total in localStorage after displaying it
+        localStorage.setItem("cartTotal", total.toFixed(2));
+
+        attachCartItemListeners();
+      }
+
+      function displayCart(items, total) {
+        cartItemsDiv.innerHTML = "";
+        if (items.length === 0) {
+          cartEmptyParagraph.style.display = "block";
+        } else {
+          cartEmptyParagraph.style.display = "none";
+          items.forEach((item) => {
+            const cartItemDiv = document.createElement("div");
+            cartItemDiv.classList.add("cart-item");
+            cartItemDiv.innerHTML = `
+                    <div class="details">
+                        <h4>${item.name}</h4>
+                        <p>Price: Rs. ${item.price.toFixed(2)}</p>
+                        <div class="quantity-controls">
+                            <button class="decrease-quantity" data-book-id="${
+                              item.id
+                            }">-</button>
+                            <span>${item.quantity}</span>
+                            <button class="increase-quantity" data-book-id="${
+                              item.id
+                            }">+</button>
+                        </div>
+                        <p>Subtotal: Rs. ${item.subtotal.toFixed(2)}</p>
+                    </div>
+                    <button class="btn remove-item" data-book-id="${
+                      item.id
+                    }">Remove</button>
+                `;
+            cartItemsDiv.appendChild(cartItemDiv);
+          });
+        }
+        cartTotalParagraph.textContent = `Total: Rs. ${total.toFixed(2)}`;
+
+        // Store the total in localStorage after displaying it
+        localStorage.setItem("cartTotal", total.toFixed(2));
+
+        attachCartItemListeners();
+      }
+
+      function displayCart(items, total) {
+        cartItemsDiv.innerHTML = "";
+        if (items.length === 0) {
+          cartEmptyParagraph.style.display = "block";
+        } else {
+          cartEmptyParagraph.style.display = "none";
+          items.forEach((item) => {
+            const cartItemDiv = document.createElement("div");
+            cartItemDiv.classList.add("cart-item");
+            cartItemDiv.innerHTML = `
+                        <div class="details">
+                            <h4>${item.name}</h4>
+                            <p>Price: Rs. ${item.price.toFixed(2)}</p>
+                            <div class="quantity-controls">
+                                <button class="decrease-quantity" data-book-id="${
+                                  item.id
+                                }">-</button>
+                                <span>${item.quantity}</span>
+                                <button class="increase-quantity" data-book-id="${
+                                  item.id
+                                }">+</button>
+                            </div>
+                            <p>Subtotal: Rs. ${item.subtotal.toFixed(2)}</p>
+                        </div>
+                        <button class="btn remove-item" data-book-id="${
+                          item.id
+                        }">Remove</button>
+                    `;
+            cartItemsDiv.appendChild(cartItemDiv);
+          });
+        }
+        cartTotalParagraph.textContent = `Total: Rs. ${total.toFixed(2)}`;
+        attachCartItemListeners();
+      }
+
+      function attachCartItemListeners() {
+        const increaseButtons = document.querySelectorAll(".increase-quantity");
+        const decreaseButtons = document.querySelectorAll(".decrease-quantity");
+        const removeButtons = document.querySelectorAll(".remove-item");
+
+        increaseButtons.forEach((button) => {
+          button.addEventListener("click", async (event) => {
+            const bookId = event.target.dataset.bookId;
+            await updateCartItemQuantity(bookId, 1);
+          });
+        });
+
+        decreaseButtons.forEach((button) => {
+          button.addEventListener("click", async (event) => {
+            const bookId = event.target.dataset.bookId;
+            await updateCartItemQuantity(bookId, -1);
+          });
+        });
+
+        removeButtons.forEach((button) => {
+          button.addEventListener("click", async (event) => {
+            const bookId = event.target.dataset.bookId;
+            await removeFromCart(bookId);
+          });
+        });
+      }
+
+      async function updateCartItemQuantity(bookId, change) {
+        try {
+          const response = await fetch(
+            "http://localhost:5000/api/cart/update",
+            {
+              method: "PUT",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                userId: CURRENT_USER_ID,
+                bookId: bookId,
+                quantity: change,
+              }),
+            }
+          );
+          if (response.ok) {
+            fetchCart(); // Refresh cart display
+          } else {
+            alert("Failed to update cart quantity.");
+          }
+        } catch (error) {
+          console.error("Error updating cart quantity:", error);
+          alert("An error occurred while updating quantity.");
+        }
+      }
+
+      async function removeFromCart(bookId) {
+        try {
+          const response = await fetch(
+            "http://localhost:5000/api/cart/remove",
+            {
+              method: "DELETE",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ userId: CURRENT_USER_ID, bookId: bookId }),
+            }
+          );
+          if (response.ok) {
+            fetchCart(); // Refresh cart display
+            showNotification("Item removed from cart!");
+          } else {
+            alert("Failed to remove item from cart.");
+          }
+        } catch (error) {
+          console.error("Error removing from cart:", error);
+          alert("An error occurred while removing from cart.");
+        }
+      }
+
+      function showNotification(message) {
+        cartNotificationDiv.textContent = message;
+        cartNotificationDiv.classList.add("show");
+        setTimeout(() => {
+          cartNotificationDiv.classList.remove("show");
+        }, 3000); // Hide after 3 seconds
+      }
+
+      // Fetch initial cart data on page load
+      fetchCart();
+    </script>
+</body>
+</html>

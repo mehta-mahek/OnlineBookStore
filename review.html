@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book Store</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper@7/swiper-bundle.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <style>
+      .arrivals {
+        padding: 20px;
+        text-align: center;
+      }
+      .arrivals .box-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+      }
+      .arrivals .box {
+        width: 80%;
+        max-width: 400px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        padding: 15px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        text-align: center;
+      }
+      .arrivals .box img {
+        width: 100%;
+        max-height: 250px;
+        object-fit: contain;
+      }
+      .arrivals .box .content h3 {
+        margin: 10px 0;
+        font-size: 18px;
+      }
+      .arrivals .box .price {
+        font-size: 16px;
+        color: #27ae60;
+      }
+      .arrivals .box .price span {
+        color: #777;
+        text-decoration: line-through;
+        margin-left: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="header-1">
+        <a href="#" class="logo"> <i class="fas fa-book"></i> Bookji</a>
+        <form action="" class="search-form">
+          <input
+            type="search"
+            name=""
+            placeholder="search here..."
+            id="search-box"
+          />
+          <label for="search-box" class="fas fa-search"></label>
+        </form>
+        <div class="icons">
+          <div id="search-btn" class="fas fa-search"></div>
+          <a href="wishlist.html" class="fas fa-heart"></a>
+          <a href="#" class="fas fa-shopping-cart"></a>
+          <a href="gg.html" class="fas fa-user"></a>
+        </div>
+      </div>
+      <div class="header-2">
+        <nav class="navbar">
+          <a href="home.html">home</a>
+          <a href="featured.html">featured</a>
+          <a href="arrival.html">arrivals</a>
+          <a href="review.html">reviews</a>
+          <a href="blog.html">blogs</a>
+          <a href="chat.html">Chat</a>
+        </nav>
+      </div>
+    </header>
+    <!-- header section ends -->
+    <!-- bottom navbar  -->
+    <nav class="bottom-navbar">
+      <a href="home.html" class="fas fa-home"></a>
+      <a href="featured.html" class="fas fa-list"></a>
+      <a href="arrival.html" class="fas fa-tags"></a>
+      <a href="review.html" class="fas fa-comments"></a>
+      <a href="blog.html" class="fas fa-blog"></a>
+    </nav>
+    <!-- reviews section starts  -->
+    <section class="reviews" id="reviews">
+      <h1 class="heading"><span>client's reviews</span></h1>
+      <div class="swiper reviews-slider">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide box">
+            <img src="image/pic-1.png" alt="" />
+            <h3>Ayush</h3>
+            <p>
+              The website is very good and responsive, all the books available
+              in this website are original and very cheap, you can buy them
+              comfortably. Payment can also be done easily.
+            </p>
+            <div class="stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+            </div>
+          </div>
+
+          <div class="swiper-slide box">
+            <img src="image/pic-2.png" alt="" />
+            <h3>Mahek</h3>
+            <p>
+              The website is very good and responsive, all the books available
+              in this website are original and very cheap, you can buy them
+              comfortably. Payment can also be done easily.
+            </p>
+            <div class="stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+            </div>
+          </div>
+
+          <div class="swiper-slide box">
+            <img src="image/pic-3.png" alt="" />
+            <h3>Meet</h3>
+            <p>
+              The website is very good and responsive, all the books available
+              in this website are original and very cheap, you can buy them
+              comfortably. Payment can also be done easily.
+            </p>
+            <div class="stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+            </div>
+          </div>
+          <div class="swiper-slide box">
+            <img src="image/pic-4.png" alt="" />
+            <h3>Palakh</h3>
+            <p>
+              The website is very good and responsive, all the books available
+              in this website are original and very cheap, you can buy them
+              comfortably. Payment can also be done easily.
+            </p>
+            <div class="stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+            </div>
+          </div>
+
+          <div class="swiper-slide box">
+            <img src="image/pic-5.png" alt="" />
+            <h3>Darsh</h3>
+            <p>
+              The website is very good and responsive, all the books available
+              in this website are original and very cheap, you can buy them
+              comfortably. Payment can also be done easily.
+            </p>
+            <div class="stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+            </div>
+          </div>
+
+          <div class="swiper-slide box">
+            <img src="image/pic-6.png" alt="" />
+            <h3>Rinisha</h3>
+            <p>
+              The website is very good and responsive, all the books available
+              in this website are original and very cheap, you can buy them
+              comfortably. Payment can also be done easily.
+            </p>
+            <div class="stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+    // Function to fetch and display reviews
+    <script>
+      async function fetchAndDisplayReviews() {
+        try {
+          const response = await fetch("http://localhost:3001/api/reviews"); // Adjust URL if needed
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          const reviews = await response.json();
+          const reviewsContainer = document.querySelector(
+            ".reviews .swiper-wrapper"
+          ); // Assuming this is where you want to add reviews
+          reviewsContainer.innerHTML = ""; // Clear existing content
+
+          reviews.forEach((review) => {
+            const box = document.createElement("div");
+            box.classList.add("swiper-slide", "box");
+
+            const userImage = document.createElement("img");
+            userImage.src = "image/pic-default.png"; // You might want to store user images
+            userImage.alt = review.username;
+
+            const userName = document.createElement("h3");
+            userName.textContent = review.username;
+
+            const reviewText = document.createElement("p");
+            reviewText.textContent = review.comment || "No comment provided.";
+
+            const starsContainer = document.createElement("div");
+            starsContainer.classList.add("stars");
+            for (let i = 0; i < 5; i++) {
+              const starIcon = document.createElement("i");
+              starIcon.classList.add(
+                "fas",
+                i < review.rating ? "fa-star" : "fa-star-o"
+              ); // Use filled or outlined star
+              starsContainer.appendChild(starIcon);
+            }
+
+            box.appendChild(userImage);
+            box.appendChild(userName);
+            box.appendChild(reviewText);
+            box.appendChild(starsContainer);
+            reviewsContainer.appendChild(box);
+          });
+
+          // Re-initialize Swiper after adding dynamic content (if needed)
+          var swiper = new Swiper(".reviews-slider", {
+            // Make sure the selector matches
+            spaceBetween: 10,
+            loop: true,
+            centeredSlides: true,
+            autoplay: {
+              delay: 1500,
+              disableOnInteraction: false,
+            },
+            breakpoints: {
+              0: {
+                slidesPerView: 1,
+              },
+              768: {
+                slidesPerView: 2,
+              },
+              1024: {
+                slidesPerView: 3,
+              },
+            },
+          });
+        } catch (error) {
+          console.error("Error fetching and displaying reviews:", error);
+          // Optionally display an error message to the user
+        }
+      }
+
+      // Call the function when the page loads (or when the reviews section is visible)
+      document.addEventListener("DOMContentLoaded", fetchAndDisplayReviews);
+    </script>
+    <div class="loader-container">
+      <img src="image/loader-img-brown-refined.gif" alt="" />
+    </div>
+    <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+
+    <!-- custom js file link  -->
+    <script src="js/script.js"></script>
+  </body>
+</html>

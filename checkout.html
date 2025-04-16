@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600&display=swap" rel="stylesheet"/> 
+    <style>
+      :root {
+        --green: #6b4226;
+        --dark-color: #4e2a1e;
+        --black: #3b2f2f;
+        --border: 0.1rem solid rgba(80, 60, 40, 0.3);
+        background-color: #f5e1c8;
+      }
+      * {
+        font-family: "Poppins", sans-serif;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        padding: 2rem;
+        background-color: #f5e1c8;
+        color: var(--black);
+      }
+      .header .header-1 {
+        background: var(--green);
+        padding: 1.5rem 9%;
+        display: flex;
+        align-items: center;
+        color: #f5e1c8;
+        justify-content: space-between;
+      }
+      .header .header-1 .logo {
+        font-size: 2.5rem;
+        font-weight: bolder;
+        color: #f5e1c8;
+      }
+      .header .header-1 .logo i {
+        color: #f5e1c8;
+      }
+      .container {
+        max-width: 600px;
+        margin: auto;
+        background: #fff;
+        padding: 2rem;
+        border-radius: 0.5rem;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      h1,
+      h2 {
+        color: var(--black);
+        text-align: center;
+      }
+      p {
+        font-size: 1.5rem;
+        color: var(--black);
+        text-align: center;
+        margin-bottom: 1rem;
+      }
+      label {
+        font-size: 1.4rem;
+        color: var(--black);
+        display: block;
+        margin-top: 1rem;
+      }
+      input,
+      textarea,
+      select {
+        width: 100%;
+        padding: 0.8rem;
+        margin-top: 0.5rem;
+        border: var(--border);
+        border-radius: 0.5rem;
+        font-size: 1.2rem;
+        background: #f5e1c8;
+        color: var(--black);
+      }
+      textarea {
+        resize: none;
+        height: 80px;
+      }
+      .btn {
+        width: 100%;
+        padding: 1rem;
+        border: none;
+        background: var(--green);
+        color: white;
+        font-size: 1.5rem;
+        margin-top: 1.5rem;
+        cursor: pointer;
+        border-radius: 0.5rem;
+        text-transform: uppercase;
+      }
+      .btn:hover {
+        background: var(--dark-color);
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="header-1">
+        <a href="#" class="logo"><i class="fas fa-book"></i> Bookji Checkout</a>
+      </div>
+    </header>
+
+    <div class="container">
+      <h1>Checkout</h1>
+      <p>Total Payable: Rs. <span id="payable-amount">0</span></p>
+
+      <form id="checkout-form">
+        <h2>Delivery Details</h2>
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" required />
+
+        <label for="address">Address:</label>
+        <textarea id="address" required></textarea>
+
+        <label for="payment-method">Payment Method:</label>
+        <select id="payment-method" required>
+          <option value="cod">Cash on Delivery</option>
+          <option value="card">Credit/Debit Card</option>
+        </select>
+
+        <button type="submit" class="btn">Place Order</button>
+      </form>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+          const payableAmount = document.getElementById("payable-amount");
+          payableAmount.textContent = localStorage.getItem("cartTotal") || "0";
+
+          document.getElementById("checkout-form").addEventListener("submit", (event) => {
+              event.preventDefault();
+
+              const name = document.getElementById("name").value.trim();
+              const address = document.getElementById("address").value.trim();
+              const paymentMethod = document.getElementById("payment-method").value;
+
+              if (!name || !address) {
+                  alert("Please enter all required details.");
+                  return;
+              }
+
+              localStorage.removeItem("cart"); // Clear cart after checkout
+              alert(`Order placed successfully! Payment: ${paymentMethod === "cod" ? "Cash on Delivery" : "Card Payment"}`);
+              window.location.href = "home.html"; // Redirect to home page
+          });
+      });
+  </script>
+  </body>
+</html>

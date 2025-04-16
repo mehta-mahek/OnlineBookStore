@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Store</title>
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-1">
+            <a href="#" class="logo"> <i class="fas fa-book"></i> Bookji</a>
+            <form action="" class="search-form">
+                <input type="search" name="" placeholder="search here..." id="search-box">
+                <label for="search-box" class="fas fa-search"></label>
+            </form>
+            <div class="icons">
+                <div id="search-btn" class="fas fa-search"></div>
+                <a href="wishlist.html" class="fas fa-heart"></a>
+                <a href="cart.html" class="fas fa-shopping-cart"></a>
+                <a href="gg.html" class="fas fa-user"></a>
+            </div>
+        </div>
+        <div class="header-2">
+            <nav class="navbar">
+                <a href="home.html">home</a>
+                <a href="featured.html">featured</a>
+                <a href="arrival.html">arrivals</a>
+                <a href="review.html">reviews</a>
+                <a href="blog.html">blogs</a>
+                <a href="chat.html">Chat</a>
+            </nav>
+        </div>
+    </header>
+    <nav class="bottom-navbar">
+        <a href="home.html" class="fas fa-home"></a>
+        <a href="featured.html" class="fas fa-list"></a>
+        <a href="arrival.html" class="fas fa-tags"></a>
+        <a href="review.html" class="fas fa-comments"></a>
+        <a href="blog.html" class="fas fa-blog"></a>
+    </nav>
+    <section class="featured" id="featured">
+        <h1 class="heading"> <span>featured books</span> </h1>
+        <div class="swiper featured-slider">
+            <div class="swiper-wrapper">
+
+                <div class="swiper-slide box">
+                    <div class="icons">
+                        <a href="#" class="fas fa-search"></a>
+                        <a href="#" class="fas fa-heart" data-book-id="1" data-book-image="image/book-1.png" data-book-title="featured books" data-book-price="RS.150 Rs.250"></a>
+                        <a href="#" class="fas fa-eye"></a>
+                    </div>
+                    <div class="image">
+                        <img src="image/book-1.png" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>The Art City</h3>
+                        <div class="price">RS.150 <span>Rs.250</span></div>
+                        <a href="cart.html" class="btn">add to cart</a>
+                    </div>
+                </div>
+
+                <div class="swiper-slide box">
+                    <div class="icons">
+                        <a href="#" class="fas fa-search"></a>
+                        <a href="#" class="fas fa-heart" data-book-id="2" data-book-image="image/book-2.png" data-book-title="featured books" data-book-price="Rs.200 Rs.300"></a>
+                        <a href="#" class="fas fa-eye"></a>
+                    </div>
+                    <div class="image">
+                        <img src="image/book-2.png" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>Give Happy</h3>
+                        <div class="price">Rs.200 <span>Rs.300</span></div>
+                        <a href="#" class="btn">add to cart</a>
+                    </div>
+                </div>
+
+                <div class="swiper-slide box">
+                    <div class="icons">
+                        <a href="#" class="fas fa-search"></a>
+                        <a href="#" class="fas fa-heart" data-book-id="3" data-book-image="image/book-3.png" data-book-title="featured books" data-book-price="Rs.500 Rs.700"></a>
+                        <a href="#" class="fas fa-eye"></a>
+                    </div>
+                    <div class="image">
+                        <img src="image/book-3.png" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>Your name</h3>
+                        <div class="price">Rs.500<span>Rs.700</span></div>
+                        <a href="#" class="btn">add to cart</a>
+                    </div>
+                </div>
+
+                <div class="swiper-slide box">
+                    <div class="icons">
+                        <a href="#" class="fas fa-search"></a>
+                        <a href="#" class="fas fa-heart" data-book-id="4" data-book-image="image/book-4.png" data-book-title="featured books" data-book-price="Rs.100 Rs.250"></a>
+                        <a href="#" class="fas fa-eye"></a>
+                    </div>
+                    <div class="image">
+                        <img src="image/book-4.png" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>Your Title goes here</h3>
+                        <div class="price">Rs.100<span>Rs.250</span></div>
+                        <a href="#" class="btn">add to cart</a>
+                    </div>
+                </div>
+
+                <div class="swiper-slide box">
+                    <div class="icons">
+                        <a href="#" class="fas fa-search"></a>
+                        <a href="#" class="fas fa-heart" data-book-id="5" data-book-image="image/book-5.png" data-book-title="featured books" data-book-price="Rs.300 Rs.400"></a>
+                        <a href="#" class="fas fa-eye"></a>
+                    </div>
+                    <div class="image">
+                        <img src="image/book-5.png" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>Music and rock</h3>
+                        <div class="price">Rs.300 <span>Rs.400 </span></div>
+                        <a href="#" class="btn">add to cart</a>
+                    </div>
+                </div>
+
+                <div class="swiper-slide box">
+                    <div class="icons">
+                        <a href="#" class="fas fa-search"></a>
+                        <a href="#" class="fas fa-heart" data-book-id="6" data-book-image="image/book-6.png" data-book-title="featured books" data-book-price="Rs.150 Rs.300"></a>
+                        <a href="#" class="fas fa-eye"></a>
+                    </div>
+                    <div class="image">
+                        <img src="image/book-6.png" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>Sample text</h3>
+                        <div class="price">Rs.150<span>Rs.300</span></div>
+                        <a href="#" class="btn">add to cart</a>
+                    </div>
+                </div>
+
+                <div class="swiper-slide box">
+                    <div class="icons">
+                        <a href="#" class="fas fa-search"></a>
+                        <a href="#" class="fas fa-heart" data-book-id="7" data-book-image="image/book-7.png" data-book-title="featured books" data-book-price="Rs.400 Rs.500"></a>
+                        <a href="#" class="fas fa-eye"></a>
+                    </div>
+                    <div class="image">
+                        <img src="image/book-7.png" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>Sea shore</h3>
+                        <div class="price">Rs.400<span>Rs.500</span></div>
+                        <a href="#" class="btn">add to cart</a>
+                    </div>
+                </div>
+
+                <div class="swiper-slide box">
+                    <div class="icons">
+                        <a href="#" class="fas fa-search"></a>
+                        <a href="#" class="fas fa-heart" data-book-id="8" data-book-image="image/book-8.png" data-book-title="featured books" data-book-price="Rs.120 Rs.210"></a>
+                        <a href="#" class="fas fa-eye"></a>
+                    </div>
+                    <div class="image">
+                        <img src="image/book-8.png" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>Black history month</h3>
+                        <div class="price">Rs.120<span>Rs.210</span></div>
+                        <a href="#" class="btn">add to cart</a>
+                    </div>
+                </div>
+
+                <div class="swiper-slide box">
+                    <div class="icons">
+                        <a href="#" class="fas fa-search"></a>
+                        <a href="#" class="fas fa-heart" data-book-id="9" data-book-image="image/book-9.png" data-book-title="featured books" data-book-price="Rs.180 Rs.250"></a>
+                        <a href="#" class="fas fa-eye"></a>
+                    </div>
+                    <div class="image">
+                        <img src="image/book-9.png" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>Love</h3>
+                        <div class="price">Rs.180<span>Rs.250</span></div>
+                        <a href="#" class="btn">add to cart</a>
+                    </div>
+                </div>
+
+                <div class="swiper-slide box">
+                    <div class="icons">
+                        <a href="#" class="fas fa-search"></a>
+                        <a href="#" class="fas fa-heart" data-book-id="10" data-book-image="image/book-10.png" data-book-title="featured books" data-book-price="Rs.50 Rs.100"></a>
+                        <a href="#" class="fas fa-eye"></a>
+                    </div>
+                    <div class="image">
+                        <img src="image/book-10.png" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>Retro </h3>
+                        <div class="price">Rs.50<span>Rs.100</span></div>
+                        <a href="#" class="btn">add to cart</a>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+
+    </section>
+    <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+    <script>
+        var swiper = new Swiper(".featured-slider", {
+            spaceBetween: 10,
+            loop: true,
+            centeredSlides: true,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            breakpoints: {
+                0: {
+                    slidesPerView: 1,
+                },
+                768: {
+                    slidesPerView: 2,
+                },
+                1024: {
+                    slidesPerView: 3,
+                },
+            },
+        });
+    </script>
+    <div class="loader-container">
+        <img src="image/loader-img-brown-refined.gif" alt="">
+    </div>
+    <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+    
+    <script>
+    
+    document.querySelectorAll('.featured .box .fas.fa-heart').forEach(heart => {
+    heart.addEventListener('click', (event) => {
+        event.preventDefault();
+        
+        const bookId = heart.dataset.bookId;
+        const bookImage = heart.dataset.bookImage;
+        const bookTitle = heart.dataset.bookTitle;
+        const bookPrice = heart.dataset.bookPrice;
+
+        let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+        const bookExists = wishlist.some(item => item.id === bookId);
+
+        if (!bookExists) {
+            wishlist.push({ id: bookId, image: bookImage, title: bookTitle, price: bookPrice });
+            localStorage.setItem('wishlist', JSON.stringify(wishlist));
+
+            // Display a toast or alert message
+            alert("Book added to wishlist!");
+        } else {
+            alert("Book is already in the wishlist!");
+        }
+    });
+});
+function addToCart(name, price, image) {
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        let existingItem = cart.find(item => item.name === name);
+        if (existingItem) {
+            existingItem.quantity += 1;
+        } else {
+            cart.push({ name, price, image, quantity: 1 });
+        }
+        localStorage.setItem("cart", JSON.stringify(cart));
+        alert(name + " added to cart!");
+    }
+    document.querySelectorAll('.featured .box .btn').forEach(button => {
+        button.addEventListener('click', (event) => {
+            event.preventDefault();
+
+            // Find the closest book container
+            const bookBox = button.closest('.box');
+            const bookId = bookBox.querySelector('.fa-heart').dataset.bookId;
+            const bookImage = bookBox.querySelector('.image img').src;
+            const bookTitle = bookBox.querySelector('.content h3').textContent;
+
+            // Get both the current price and original price
+            const bookPriceElement = bookBox.querySelector('.content .price');
+            const currentPrice = bookPriceElement.childNodes[0].textContent.trim(); // Current price
+            const originalPrice = bookPriceElement.querySelector('span').textContent.trim(); // Original price
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            addToCart(bookTitle, currentPrice,bookImage);
+           /* if (!bookExists) {
+                cart.push({
+                    image: image,
+                    title: bookTitle,
+                    price: `${currentPrice}` // Store the full price format
+                });
+                console.log(cart)
+                localStorage.setItem('cart', JSON.stringify(cart));
+
+                // Display a toast or alert message
+                alert("Book added to cart!");
+            } else {
+                alert("Book is already in the cart!");
+            } */
+        });
+    });
+
+</script>
+    <script src="js/script.js"></script>
+</body>
+</html>
